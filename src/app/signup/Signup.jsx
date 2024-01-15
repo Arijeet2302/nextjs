@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './signup.css';
 import axios from 'axios';
-import { login } from '../Redux/slices/UserSlice';
+import { login } from '../../../lib/slices/UserSlice';
 import { useDispatch } from 'react-redux';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 const SignupForm = () => {
   const dispatch = useDispatch();
-  const router = useRouter();
+  const redirect = useRouter();
   const [formData, setFormData] = useState({
     fname: '',
     lname: '',
@@ -16,7 +16,6 @@ const SignupForm = () => {
     email: '',
     password: '',
   });
-  const { data: session } = useSession();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +36,13 @@ const SignupForm = () => {
         password: formData.password,
       });
       alert(res.data.msg);
-      dispatch(login(session.user));
-      router.push("/");
+      dispatch(login({name : formData.username, email:formData.email}));
+      await signIn("credentials",{
+        email : formData.email,
+        password : formData.password,
+        redirect : false,
+      })
+      redirect.push("/");
     } catch (error) {
       console.log("Error while signing in",error);
     }

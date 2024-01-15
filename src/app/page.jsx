@@ -1,30 +1,17 @@
 "use client"
 import styles from './page.module.css'
 import Link from 'next/link';
-import { logout } from './Redux/slices/UserSlice';
+import { logout } from '../../lib/slices/UserSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import CartItemsComponent from './components/cartItems/CartItems';
-import { DeleteCart } from './Redux/slices/CartSlice';
+import { DeleteCart } from '../../lib/slices/CartSlice';
 import { signOut } from 'next-auth/react';
 
 export default function Home() {
 
-  const [ isloggedIn, setIsLoggedIn] = useState(false);
+  const isloggedIn = useSelector((state)=>state.user.status);
   const dispatch = useDispatch();
-  const res = useSelector((state)=> state.user.status);
-  const name = useSelector((state)=> state.user.name);
-
-  useEffect(()=>{
-    const CheckUser = ()=>{
-      if(res){
-        setIsLoggedIn(true); 
-      }else{
-        setIsLoggedIn(false);
-      }
-    }
-    CheckUser();
-  })
+  const name = useSelector((state)=>state.user.name);
 
   const handleLogout = ()=>{
     signOut();

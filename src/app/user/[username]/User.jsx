@@ -1,20 +1,22 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import "./user.css";
-import { logout } from '../../Redux/slices/UserSlice';
+import { logout } from '../../../../lib/slices/UserSlice';
 import { useRouter } from 'next/navigation';
-import { DeleteCart } from '../../Redux/slices/CartSlice';
+import { DeleteCart } from '../../../../lib/slices/CartSlice';
+import { signOut } from 'next-auth/react';
 
 const User = () => {
-    const userName = useSelector((state) => state.user.name);
-    const userEmail = useSelector((state) => state.user.email);
+    const userName = useSelector((state)=>state.user.name);
+    const userEmail = useSelector((state)=>state.user.email);
     const dispatch = useDispatch();
-    const router = useRouter();
+    const redirect = useRouter();
 
     const handleLogout = () => {
+        signOut({redirect:false});
         dispatch(logout());
         dispatch(DeleteCart());
-        router.push("/");
+        redirect.push("/");
     }
 
   return (

@@ -1,4 +1,4 @@
-import connectMongoDB from "../../../../lib/mongodb";
+import connectMongoDB from "../../../../../lib/mongodb";
 import User from "../../../../models/UserModel";
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
@@ -32,8 +32,8 @@ const authOptions = {
                     
                     return {
                         id : user._id,
-                        email : user.Email,
                         name : user.Username,
+                        email : user.Email,
                     };
                 } catch (error) {
                     console.log(error);
@@ -48,6 +48,7 @@ const authOptions = {
     },
 
     callbacks: {
+
         async jwt({token, user, isNewUser}) {
             if (isNewUser) {
                 token.id = user.id;

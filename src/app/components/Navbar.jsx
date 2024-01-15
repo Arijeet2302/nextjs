@@ -5,21 +5,9 @@ import "./navbar.css"
 import { useSelector } from 'react-redux'
 
 const Navbar = () => {
-  const [isloggedIn, setIsLoggedIn] = useState(false);
-  const res = useSelector((state) => state.user.status)
   const cartCount = useSelector((state) => state.cart.count)
   const name = useSelector((state) => state.user.name)
-
-  useEffect(() => {
-    const CheckUser = () => {
-      if (res) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    }
-    CheckUser();
-  })
+  const isloggedIn = useSelector((state) => state.user.status);
 
   const handlecart = () => {
     alert("login first");

@@ -1,6 +1,6 @@
 import React from 'react'
 import "./cart.css"
-import { DeleteItem, DeleteCart } from "../Redux/slices/CartSlice"
+import { DeleteItem, DeleteCart } from "../../../lib/slices/CartSlice"
 import { useDispatch, useSelector } from "react-redux"
 
 const Cart = () => {

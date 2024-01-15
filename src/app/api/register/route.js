@@ -1,9 +1,9 @@
-import connectMongoDB from "../../../lib/mongodb";
+import connectMongoDB from "../../../../lib/mongodb";
 import User from "../../../models/UserModel";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
-export async function POST(request) {
+async function RegisterUser(request) {
     try {
         const { fname, lname, username, email, password } = await request.json();
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -11,7 +11,7 @@ export async function POST(request) {
         const user = await User.findOne({Email : email});
         if(user) return NextResponse.json({msg : "User already exists!"});
         await User.create({
-            FirstName : fname,
+            Firstname : fname,
             LastName : lname,
             Username : username,
             Email : email,
@@ -23,3 +23,5 @@ export async function POST(request) {
         return NextResponse.json({msg : "Something went wrong!"});
     }
 }
+
+export {RegisterUser as POST};
