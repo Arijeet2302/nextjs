@@ -21,9 +21,6 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.headingMain}>
-        This is main page
-      </div>
       <div className={styles.bodyMain}>
         { isloggedIn ? (<h2>Hello {name}</h2>):<div></div>}
       </div>

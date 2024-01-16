@@ -1,64 +1,65 @@
-/* CartSummaryComponent.module.css */
+/* YourComponent.css */
 
-.cartContainer {
+.cartContainer1 {
   max-width: 600px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
 }
 
 .cartSummary {
-  margin-top: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .cartSummary h2 {
   font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .cartSummary p {
-  margin: 0;
+  font-style: italic;
 }
 
-.cartSummary ul {
+.item-ul {
   list-style: none;
   padding: 0;
 }
 
-.cartSummary li {
+.item-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
 }
 
 .deleteButton {
-  padding: 8px;
-  background-color: #ff3333;
+  background-color: #dc3545;
   color: #fff;
+  padding: 8px 12px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
 }
 
 .deleteButton:hover {
-  background-color: #cc0000;
+  background-color: #bb2d3b;
+}
+
+.deleteAllcontainer {
+  display: flex;
+  justify-content: center;
 }
 
 .deleteAllButton {
-  padding: 10px;
-  background-color: #ff3333;
+  background-color: #dc3545;
   color: #fff;
+  padding: 10px 15px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .deleteAllButton:hover {
-  background-color: #cc0000;
+  background-color: #bb2d3b;
 }
